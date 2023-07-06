@@ -1,0 +1,35 @@
+type Query {
+    get_catalog: [Catalog]
+}
+
+type Mutation {
+    add_catalog_entry(catalog: CatalogInput): Catalog
+    edit_catalog_entry(catalog: CatalogInput): Catalog
+    terminate_catalog_entry(id: ID): String
+}
+
+type Catalog {
+    id: id
+    first_name: String
+    last_name: String
+    middle_name: String
+    gender: String
+    birthdate: String
+    phone_number: String
+    mail: String
+    address: String
+    terminationDate: String
+}
+
+input CatalogInput {
+    id: id
+    first_name: String
+    last_name: String
+    middle_name: String
+    gender: String
+    birthdate: String
+    phone_number: String
+    mail: String
+    address: String
+    terminationDate: String
+}
