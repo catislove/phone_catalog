@@ -1,0 +1,6 @@
+type Mutation {
+    add_catalog_entry(entry: CatalogEntryInput): CatalogEntry
+    edit_catalog_entry(id: ID, entry: CatalogEntryInput): CatalogEntry
+    terminate_catalog_entry(id: ID): CatalogEntry
+    unterminate_catalog_entry(id: ID): CatalogEntry
+}

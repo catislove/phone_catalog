@@ -1,0 +1,24 @@
+type CatalogEntry {
+    id: ID
+    first_name: String
+    last_name: String
+    middle_name: String
+    gender: String
+    birthdate: String
+    phone_number: String
+    mail: String
+    address: String
+    termination_date: String
+}
+
+input CatalogEntryInput {
+    first_name: String
+    last_name: String
+    middle_name: String
+    gender: String
+    birthdate: String
+    phone_number: String
+    mail: String
+    address: String
+    termination_date: String
+}
