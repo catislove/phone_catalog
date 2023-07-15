@@ -68,6 +68,7 @@ export async function get_catalog(parent, { order, search }, context, info) {
     return res.rows;
 }
 
+
 export async function add_catalog_entry(parent, { entry }, context, info) {
     let keys = Object.keys(entry).join(', ');
     let values = Object.values(entry);
@@ -93,8 +94,21 @@ export async function unterminate_catalog_entry(parent, { id }, context, info) {
     return res.rows[0];
 }
 
-// TODO: create function get_user
 
+export async function get_user(parent, args, context_value, info) {
+    let user = context_value.user;
+    if (args['id'] && args['id'] != user.id) {
+        // TODO: probably check admin role and allow to get other users info
+        throw new GraphQLError('Недостаточно прав', {
+            extensions: {
+                code: 'ACCESSDENIED',
+                http: { status: 403 },
+            },
+        });
+    }
+
+    return user;
+}
 
 
 // TODO: create function get_report

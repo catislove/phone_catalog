@@ -1,0 +1,8 @@
+type User {
+    id: Int!
+    login: String!
+    name: String!
+    email: String
+    remote_id: String
+    roles: [String]
+}

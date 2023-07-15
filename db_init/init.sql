@@ -10,3 +10,13 @@ CREATE TABLE IF NOT EXISTS phone_catalog (
     address TEXT DEFAULT '',
     termination_date TIMESTAMP WITH TIME ZONE DEFAULT NULL
 );
+
+CREATE TABLE IF NOT EXISTS users (
+    id BIGSERIAL PRIMARY KEY,
+    login VARCHAR(255) NOT NULL UNIQUE,
+    name VARCHAR(255),
+    email VARCHAR(255),
+    remote_id VARCHAR(255) NOT NULL UNIQUE
+);
+
+CREATE DATABASE keycloak;
