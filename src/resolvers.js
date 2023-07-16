@@ -94,7 +94,6 @@ export async function unterminate_catalog_entry(parent, { id }, context, info) {
     return res.rows[0];
 }
 
-
 export async function get_user(parent, args, context_value, info) {
     let user = context_value.user;
     if (args['id'] && args['id'] != user.id) {
@@ -110,5 +109,59 @@ export async function get_user(parent, args, context_value, info) {
     return user;
 }
 
+async function get_report_separated(delimiter) {
+    let headers_names = headers.map((x) => x.header);
+    let res = await client.query(`SELECT * FROM phone_catalog`, []);
+    let data = headers_names.join(delimiter);
+    data += '\r\n';
 
-// TODO: create function get_report
+    data += await csv.writeToString(res.rows, { delimiter: delimiter });
+    return data;
+}
+
+async function get_report_xls() {
+    let res = await client.query(`SELECT * FROM phone_catalog`, []);
+    let data = res.rows;
+    const workbook = new excel.Workbook();
+    let worksheet = workbook.addWorksheet('Телефонный справочник');
+
+    worksheet.columns = headers;
+
+    worksheet.getRow(1).eachCell((cell) => {
+        cell.font = { bold: true };
+        cell.alignment = { vertical: 'middle', horizontal: 'center', wrapText: true };
+    });
+    worksheet.addRows(data);
+
+    let result_data = await workbook.xlsx.writeBuffer();
+
+    return result_data;
+}
+
+async function get_report_xml() {
+    let root = builder.create('data');
+    let res = await client.query(`SELECT * FROM phone_catalog`, []);
+    for (let i = 0; i < res.rows.length; i++) {
+        let item = root.ele('row');
+        headers.forEach((x) => {
+            if (res.rows[i][x.key]) item.ele(x.key, res.rows[i][x.key]);
+        });
+    }
+
+    let data = root.end({ pretty: true });
+    return data;
+}
+
+export async function get_catalog_report(format) {
+    switch (format) {
+        case 'csv':
+            return await get_report_separated(',');
+        case 'xlsx':
+            return await get_report_xls();
+        case 'tsv':
+            return await get_report_separated('\t');
+        case 'xml':
+            return await get_report_xml();
+    }
+}
+

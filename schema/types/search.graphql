@@ -1,0 +1,9 @@
+"""
+Search field and value definition
+"""
+input SearchItem {
+    "The field to search by"
+    field: String
+    "The value to search"
+    value: String
+}

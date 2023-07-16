@@ -1,3 +1,9 @@
+type Query {
+    get_catalog(order: OrderItem, search: SearchItem): [CatalogEntry]
+    "Get a user with 'id'"
+    get_user(id: ID): User
+}
+
 type Mutation {
     add_catalog_entry(entry: CatalogEntryInput): CatalogEntry
     edit_catalog_entry(id: ID, entry: CatalogEntryInput): CatalogEntry

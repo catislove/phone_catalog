@@ -1,0 +1,19 @@
+"""
+Defines possible sort orders
+"""
+enum OrderType {
+    "Sort order ascending (A..Z)"
+    ASC
+    "Sort order descending (Z..A)"
+    DESC
+}
+
+"""
+Sort field and order definition
+"""
+input OrderItem {
+    "The field to sort by"
+    field: String!
+    "Sort order (one of OrderTypes)"
+    order: OrderType!
+}
