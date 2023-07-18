@@ -1,0 +1,78 @@
+.phone-list {
+    background: white;
+    display: grid;
+    grid-template-rows: 64px 64px 1fr;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.phone-list__header {
+    background: white;
+    display: flex;
+    width: 100%;
+    padding: 16px 0px;
+    justify-content: space-between;
+}
+
+.phone-list__buttons {
+    background: white;
+    display: flex;
+    width: 100%;
+    padding: 16px 0px;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.phone-list__scroll {
+    overflow-y: auto;
+    max-height: 100%;
+    height: 100%;
+}
+
+.phone-list table, .phone-list th, .phone-list td {
+    padding: 8px;
+    font-size: 14px;
+}
+
+.phone-list button.download:not([disabled]) {
+    background: #EBFAFF;
+    border: 1px solid #84E0FF;
+    color: black;
+}
+
+.phone-list__no-view-access {
+    display: flex;
+    width: 100%;
+    height: auto;
+    font-size: 16px;
+    color: orangered;
+    justify-content: center;
+    align-items: center;
+    padding: 100px;
+    box-sizing: border-box;
+}
+
+.phone-list__popup {
+    top: 120px;
+    right: 47px;
+}
+
+.phone-editor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(5, 55px);
+}
+
+.phone-editor__row {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    width: 100%;
+    padding: 8px 20px;
+    box-sizing: border-box;
+
+    & > label {
+        font-size: 13px;
+    }
+}

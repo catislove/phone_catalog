@@ -1,0 +1,114 @@
+<div class="phone-list">
+    <div class="phone-list__header">
+        <h1>Телефонный справочник ООО "Ромашка"</h1>
+        <a href="/logout">
+            <button>Выйти</button>
+        </a>
+    </div>
+    <div class="phone-list__buttons">
+        <button class="phone-list__button-add">Добавить</button>
+        <button class="phone-list__button-edit">Редактировать</button>
+        <button class="phone-list__button-download download">Скачать</button>
+    </div>
+    <div class="phone-list__scroll">
+        <div class="phone-list__no-view-access">У Вас нет прав для просмотра</div>
+        <table class="phone-list__table hidden">
+            <colgroup>
+                <col width="2%">
+                <col width="12%">
+                <col width="12%">
+                <col width="12%">
+                <col width="2%">
+                <col width="12%">
+                <col width="12%">
+                <col width="12%">
+                <col width="12%">
+                <col width="12%">
+            </colgroup>
+            <thead>
+            <tr>
+                <td>ID</td>
+                <td>Фамилия</td>
+                <td>Имя</td>
+                <td>Отчество</td>
+                <td>Пол</td>
+                <td>Дата рождения</td>
+                <td>Контактный телефон</td>
+                <td>Почта</td>
+                <td>Адрес</td>
+                <td>Дата увольнения</td>
+            </tr>
+            </thead>
+            <tbody id="tableBody">
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="blur" style="visibility: hidden;"></div>
+<div class="editor" style="visibility: hidden;">
+    <div class="form">
+        <div class="form__title">
+            <span>Добавление контакта</span>
+            <span class="close phone-editor__close">X</span>
+        </div>
+        <div class="form__content phone-editor">
+            <div class="phone-editor__row">
+                <label required>Фамилия</label>
+                <input required class="phone-editor__last_name"/>
+            </div>
+            <div class="phone-editor__row">
+                <label required>Имя</label>
+                <input required class="phone-editor__first_name"/>
+            </div>
+            <div class="phone-editor__row">
+                <label>Отчество</label>
+                <input class="phone-editor__middle_name"/>
+            </div>
+            <div class="phone-editor__row">
+                <label required>Пол</label>
+                <select required class="phone-editor__gender">
+                    <option>Мужской</option>
+                    <option>Женский</option>
+                </select>
+            </div>
+            <div class="phone-editor__row">
+                <label required>Дата рождения</label>
+                <input required type="date" class="phone-editor__birthdate"/>
+            </div>
+            <div class="phone-editor__row">
+                <label required>Контактный телефон</label>
+                <input required type="tel" class="phone-editor__phone_number"/>
+            </div>
+            <div class="phone-editor__row">
+                <label>email</label>
+                <input type="email" class="phone-editor__mail"/>
+            </div>
+            <div class="phone-editor__row">
+                <label>Адрес</label>
+                <input class="phone-editor__address"/>
+            </div>
+            <div class="phone-editor__row">
+                <label>Дата увольнения</label>
+                <input type="date" class="phone-editor__termination_date"/>
+            </div>
+            <div class="phone-editor__row">
+            </div>
+        </div>
+        <div class="form__footer">
+            <button class="phone-editor__save">Сохранить</button>
+            <button class="phone-editor__cancel">Отмена</button>
+        </div>
+    </div>
+</div>
+
+<div class="blocked hidden"></div>
+<div class="popup phone-list__popup hidden">
+    <ul>
+        <li data-format="xlsx">В формате .xlsx</li>
+        <li data-format="xml">В формате .xml</li>
+        <li data-format="csv">В формате .csv</li>
+        <li data-format="tsv">В формате .tsv</li>
+    </ul>
+</div>
