@@ -18,7 +18,48 @@ class PhoneList {
             alert(e)
         })
     }
+getUser() {
+        if (window.authService) {
+            return window.authService.fetchUser()
+        } else {
+            return Promise.reject('Auth service is not ready')
+        }
+    }
+    bindEvents() {
+        const elemButtonAdd = document.querySelector('.phone-list__button-add')
+        const elemButtonEdit = document.querySelector('.phone-list__button-edit')
+        const elemButtonDownload = document.querySelector('.phone-list__button-download')
+        const elemButtonSave = document.querySelector('.phone-editor__save')
+        const elemButtonCancel = document.querySelector('.phone-editor__cancel')
+        const elemButtonClose = document.querySelector('.phone-editor__close')
+        const elemDownloadItems = document.querySelectorAll('.phone-list__popup li')
 
+        if (elemButtonAdd) {
+            elemButtonAdd.addEventListener('click', (e) => { this.handleAddClick(e) })
+        }
+        if (elemButtonEdit) {
+            elemButtonEdit.addEventListener('click', (e) => { this.handleEditClick(e) })
+        }
+        if (elemButtonSave) {
+            elemButtonSave.addEventListener('click', (e) => { this.handleSaveClick(e) })
+        }
+        if (elemButtonCancel) {
+            elemButtonCancel.addEventListener('click', (e) => { this.handleClose(e) })
+        }
+        if (elemButtonClose) {
+            elemButtonClose.addEventListener('click', (e) => { this.handleClose(e) })
+        }
+        if (elemButtonDownload) {
+            elemButtonDownload.addEventListener('click', (e) => { this.handleOpenDownloadPopup(e) })
+        }
+        if (elemDownloadItems) {
+            elemDownloadItems.forEach(x => {
+                x.addEventListener('click', (e) => {
+                    this.handleDownloadClick(e)
+                })
+            })
+        }
+    }
     openEditor() {
             if (this.elemBlur) {
                 this.elemBlur.style.visibility = 'visible'
