@@ -102,3 +102,40 @@ getUser() {
             this.clearFields()
             this.closeEditor()
         }
+        hideDownloadPopup() {
+                const elemPopup = document.querySelector('.phone-list__popup')
+                const elemBlocked = document.querySelector('.blocked')
+                if (elemBlocked) {
+                    elemBlocked.removeEventListener('click', this.hideDownloadPopup)
+                    elemBlocked.classList.add('hidden')
+                }
+                if (elemPopup) {
+                    elemPopup.classList.add('hidden')
+                }
+            }
+            handleOpenDownloadPopup() {
+                const elemBlocked = document.querySelector('.blocked')
+                const elemPopup = document.querySelector('.phone-list__popup')
+                if (elemBlocked) {
+                    elemBlocked.classList.remove('hidden')
+                    elemBlocked.addEventListener('click', this.hideDownloadPopup)
+                }
+                if (elemPopup) {
+                    elemPopup.classList.remove('hidden')
+                }
+            }
+            handleDownloadClick(e) {
+                if (e?.target?.dataset?.format) {
+                    this.downloadReport(e.target.dataset.format)
+                    this.hideDownloadPopup()
+                }
+            }
+            downloadReport(format = 'xlsx') {
+                const url = `${import.meta.env.VITE_API_URL}/report?format=${format}`
+                const a = document.createElement('a')
+                a.href = url
+                a.download = url.split('/').pop()
+                document.body.appendChild(a)
+                a.click()
+                document.body.removeChild(a)
+            }
